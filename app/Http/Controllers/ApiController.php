@@ -31,7 +31,11 @@ class ApiController extends Controller
             $keyHeader = str_replace('th_', '', $key);
             $itemArray[$keyHeader] = Cache::get($key);
         }
-        return $itemArray;
+
+        if (count($itemArray) == 0) {
+            return ['status' => 200, 'message' => 'No record found!'];
+        }
+        return ['status' => 200, 'data' => $itemArray];
     }
 
 
@@ -43,14 +47,23 @@ class ApiController extends Controller
             $searchKey = 'th_' . $key;
             $itemArray[$key] = Cache::get($searchKey);
         }
-        return $itemArray;
+        if (count($itemArray) == 0) {
+            return ['status' => 200, 'message' => 'No record found!'];
+        }
+        return ['status' => 200, 'data' => $itemArray];
     }
 
     public function updateKey(Request $request)
     {
-        foreach ($request->all() as $key => $item) {
-            $updateKey = 'th_' . $key;
-            Cache::store('redis')->put($updateKey, $item, 10);
+        try {
+            foreach ($request->all() as $key => $item) {
+                $updateKey = 'th_' . $key;
+                Cache::store('redis')->put($updateKey, $item, 10);
+            }
+
+            return ['status' => 200, 'message' => 'Keys values updated successfully!'];
+        } catch (\Exception $e) {
+            return ['status' => $e->getCode(), 'message' => $e->getMessage()];
         }
     }
 }

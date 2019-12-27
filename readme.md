@@ -23,7 +23,7 @@
 # Note
 
 Following the project REST api endpoint
-1. Get all values (GET): `/api/values`
-2. Store (POST): `/api/store`
-3. Get by keys (GET): `/api/value`
-4. Update (PATCH): `/api/value`
+1. Get all values (GET): `api/values`
+2. Store (POST): `api/values`
+3. Get by keys (GET): `api/value?keys=`
+4. Update (PATCH): `api/values`
