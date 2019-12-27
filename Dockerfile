@@ -23,7 +23,6 @@ RUN apt-get update && apt-get install \
     autoconf \
     libz-dev
 
-
 # Borramos cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -41,9 +40,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copiar el directorio existente a /var/www
 COPY . /var/www/html
-
-# RUN cd /var/www/html && composer install
-# RUN cd /var/www/html && php artisan key:generate
 # copiar los permisos del directorio de la aplicación
 RUN chown -R www-data:www-data /var/www/html
 RUN chown -R www-data:www-data /var/www/html/storage

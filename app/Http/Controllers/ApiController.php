@@ -13,7 +13,7 @@ class ApiController extends Controller
         try {
             foreach ($request->all() as $key => $item) {
                 $itemKey = 'th_' . $key;
-                Cache::store('redis')->put($itemKey, $item, 10);
+                Cache::store('redis')->put($itemKey, $item, 5);
             }
             return ['status' => 200, 'message' => 'Item inserted successfully!'];
         } catch (\Exception $e) {
@@ -58,9 +58,8 @@ class ApiController extends Controller
         try {
             foreach ($request->all() as $key => $item) {
                 $updateKey = 'th_' . $key;
-                Cache::store('redis')->put($updateKey, $item, 10);
+                Cache::store('redis')->put($updateKey, $item, 5);
             }
-
             return ['status' => 200, 'message' => 'Keys values updated successfully!'];
         } catch (\Exception $e) {
             return ['status' => $e->getCode(), 'message' => $e->getMessage()];
