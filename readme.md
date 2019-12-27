@@ -30,6 +30,10 @@
         
         `0.0.0.0:8101/api/values`
         1. Example (`JSON`): `{"item1": "test 1", "item2": "test 2"}`
+5. PHPUnit test:
+
+    `docker-compose run app composer test`
+    
 
 # Project Requirements (With local Redis)
 
@@ -68,6 +72,9 @@
             
         `127.0.0.1:8000/api/values`
         1. Example (`JSON`): `{"item1": "test 1", "item2": "test 2"}`
+7. PHPUnit test:
+
+    `composer test`
     
 # Note
 
