@@ -15,7 +15,7 @@ class ApiController extends Controller
                 $itemKey = 'th_' . $key;
                 Cache::store('redis')->put($itemKey, $item, 5);
             }
-            return ['status' => 200, 'message' => 'Item inserted successfully!'];
+            return ['status' => 201, 'message' => 'Item inserted successfully!'];
         } catch (\Exception $e) {
             return ['status' => $e->getCode(), 'message' => $e->getMessage()];
         }
@@ -33,7 +33,7 @@ class ApiController extends Controller
         }
 
         if (count($itemArray) == 0) {
-            return ['status' => 200, 'message' => 'No record found!'];
+            return ['status' => 204, 'message' => 'No record found!'];
         }
         return ['status' => 200, 'data' => $itemArray];
     }
@@ -48,7 +48,7 @@ class ApiController extends Controller
             $itemArray[$key] = Cache::get($searchKey);
         }
         if (count($itemArray) == 0) {
-            return ['status' => 200, 'message' => 'No record found!'];
+            return ['status' => 204, 'message' => 'No record found!'];
         }
         return ['status' => 200, 'data' => $itemArray];
     }
@@ -60,7 +60,7 @@ class ApiController extends Controller
                 $updateKey = 'th_' . $key;
                 Cache::store('redis')->put($updateKey, $item, 5);
             }
-            return ['status' => 200, 'message' => 'Keys values updated successfully!'];
+            return ['status' => 201, 'message' => 'Keys values updated successfully!'];
         } catch (\Exception $e) {
             return ['status' => $e->getCode(), 'message' => $e->getMessage()];
         }
