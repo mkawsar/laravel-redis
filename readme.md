@@ -1,6 +1,6 @@
 # Project Requirements (With local Redis)
 
-1. php:7.3
+1. php:^7.2
 2. redis:5.0.7
 
 # Project setup (With local Redis)
